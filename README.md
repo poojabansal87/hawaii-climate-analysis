@@ -18,12 +18,15 @@ Below are my findings:
 
     ![Trip_Avg_Temp_ErrBar.png](Images/Trig_Avg_Temp_ErrBar.png)
 
-* In addition, the data analyzed is made available on the loacalhost through the following links once the app.py is run on localhost:
+* In addition, the data analyzed is made available on the localhost through the following links once the app.py is run on localhost:
 -------------------------------------------------------------------------
 ```
 (http://127.0.0.1:5000/api/v1.0/precipitaion)
 (http://127.0.0.1:5000/api/v1.0/stations)
 (http://127.0.0.1:5000/api/v1.0/tobs)
 (http://127.0.0.1:5000/api/v1.0/<start_date>)
-(http://127.0.0.1:5000/api/v1.0/<end_date>)
+(http://127.0.0.1:5000/api/v1.0/<start_date>/<end_date>)
+
+*** Use your local host instead of 127.0.0.1:5000
+*** Provide date in the format yyyy-mm-dd when replacing variables <start_date> and <end_date>
 ```
