@@ -10,10 +10,10 @@ Below are my findings:
 ![precipitation_over_year.png](Images/precipation_over_year.png)
 
 * The maximum temperature goes upto 90 degress and minimum is 60 degrees. Most of the recordings were observed for 76 degrees.
-![Temperature_Historgram.png](Images\Temperature_Histogram.png)
+![Temperature_Historgram.png](Images/Temperature_Histogram.png)
 
 * If I were planning a trip in the first week of March, based on the year 2011, the temperature variance I will experience can be shown with the errorbar below:
-![Trip_Avg_Temp_ErrBar.png](Images\Trig_Avg_Temp_ErrBar.png)
+![Trip_Avg_Temp_ErrBar.png](Images/Trig_Avg_Temp_ErrBar.png)
 
 * In addition, the data analyzed is made available on the loacalhost through the following links once the app.py is run on localhost:
 -------------------------------------------------------------------------
