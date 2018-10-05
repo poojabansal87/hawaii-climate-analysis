@@ -60,13 +60,69 @@ def last_12_mth_prcp():
 def stations():
     """Return a list of stations"""
     # Query all stations
-    st_results = station_count = session.query((func.distinct(Measurement.station).label("station"))).all()
+    st_results = session.query((func.distinct(Measurement.station).label("station"))).all()
 
     # Create a dictionary from the row data and append to a list of all_passengers
     all_names = list(np.ravel(st_results))
 
     return jsonify(all_names)
 
+@app.route("/api/v1.0/tobs")
+def temp_obs():
+    """Return a list of temperature observation in the station with highest number of observations"""
+    # Calculate the date 2 year ago from today
+    last_to_last_yr = dt.date.today() - dt.timedelta(days=2*365)
+    # Query for USC00519281: station with highest observations
+    tobs_results = session.query(Measurement.date, Measurement.tobs).filter(Measurement.date>last_to_last_yr).\
+                filter(Measurement.station == "USC00519281").all()
+    
+    # Create a dictionary from the row data and append to a list of all_passengers
+    all_temp_obs = []
+    
+    for row in tobs_results:
+        row_dict = {}
+        row_dict["date"] = row.date
+        row_dict["temperture observation"] = row.tobs
+        all_temp_obs.append(row_dict)
+
+    return jsonify(all_temp_obs)
+
+@app.route("/api/v1.0/<start_date>")
+def temp_info(start_date):
+    """Return minimum, maximum and average temperature for all date higher than start date"""
+    temp_info = session.query(func.min(Measurement.tobs).label("TMIN"),func.max(Measurement.tobs).label("TMAX"),\
+                    func.avg(Measurement.tobs).label("TAVG")).filter(Measurement.date>=start_date).all()
+    
+    # Create a dictionary from the row data and append to a list of all_passengers
+    all_temp_info = []
+    
+    for row in temp_info:
+        row_dict = {}
+        row_dict["minimum temperature"] = row.TMIN
+        row_dict["maximum temperature"] = row.TMAX
+        row_dict["average temperature"] = row.TAVG
+        all_temp_info.append(row_dict)
+
+    return jsonify(all_temp_info)
+
+@app.route("/api/v1.0/<start_date>/<end_date>")
+def temp_info2(start_date,end_date):
+    """Return minimum, maximum and average temperature for all date higher than start date and lower than end date"""
+    temp_info = session.query(func.min(Measurement.tobs).label("TMIN"),func.max(Measurement.tobs).label("TMAX"),\
+                    func.avg(Measurement.tobs).label("TAVG")).filter(Measurement.date>=start_date).\
+                    filter(Measurement.date<=end_date).all()
+    
+    # Create a dictionary from the row data and append to a list of all_passengers
+    all_temp_info = []
+    
+    for row in temp_info:
+        row_dict = {}
+        row_dict["minimum temperature"] = row.TMIN
+        row_dict["maximum temperature"] = row.TMAX
+        row_dict["average temperature"] = row.TAVG
+        all_temp_info.append(row_dict)
+
+    return jsonify(all_temp_info)
 
 if __name__ == '__main__':
     app.run(debug=True)
