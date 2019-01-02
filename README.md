@@ -1,8 +1,9 @@
-# sqlalchemy-hw
+## hawaii-climate-analysis
+#  Python and SQLAlchemy project
 
 SQLAlchemy is the Python SQL toolkit and Object Relational Mapper which provides a full suite of well known enterprise-level persistence patterns, designed for efficient and high-performing database access, adapted into a simple and Pythonic domain language.
 
-In this exercise, I took the temperature and precipitation data readings done in 9 centers across Hawaii and used it to perform weather analysis. The data was provided in sqlite format.
+In this project, I took the temperature and precipitation data readings done in 9 centers across Hawaii and used it to perform weather analysis. The data was provided in sqlite format.
 
 Below are my findings:
 
